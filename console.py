@@ -176,7 +176,7 @@ class HBNBCommand(cmd.Cmd):
                         attr_type = int
 
                 # Replace any underscores with spaces
-                attr_value = attr_value.replace("_", " ", 1)
+                attr_value = attr_value.replace("_", " ")
 
                 # Set attribute
                 setattr(new_instance, attr_name, attr_type(attr_value))
