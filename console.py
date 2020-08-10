@@ -26,8 +26,9 @@ class HBNBCommand(cmd.Cmd):
 
     class_attrs = {
                    'Place': ['city_id', 'user_id', 'name', 'number_rooms',
-                   'number_bathrooms', 'max_guest', 'price_by_night',
-                   'latitude', 'longitude', 'description', 'amenity_ids'],
+                             'number_bathrooms', 'max_guest', 'price_by_night',
+                             'latitude', 'longitude', 'description',
+                             'amenity_ids'],
                    'BaseModel': ['id', 'updated_at', 'created_at'],
                    'User': ['email', 'passowrd', 'first_name', 'last_name'],
                    'State': ['name'],
