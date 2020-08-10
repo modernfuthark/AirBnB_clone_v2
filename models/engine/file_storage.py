@@ -43,6 +43,7 @@ class FileStorage:
                 if self.all()[key].id == obj.id:
                     self.all().pop(key)
                     break
+            self.save()
 
     def reload(self):
         """Loads storage dictionary from file"""
