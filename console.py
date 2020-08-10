@@ -148,7 +148,7 @@ class HBNBCommand(cmd.Cmd):
             # For every argument after the first (which was class name)
             for string in args[1:]:
                 # Skip arg if it doesn't match name=value
-                if '=' not in string:
+                if '=' not in string or string[0] == '=' or string[-1] == '=':
                     continue
 
                 # Attribute name is everything before '='
