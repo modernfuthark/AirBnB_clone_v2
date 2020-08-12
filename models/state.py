@@ -13,6 +13,15 @@ class State(BaseModel, Base):
 
     @property
     def cities(self):
-        """ Returns a list? dictionary? of all cities with a state_id
+        """ Returns a dictionary of all cities with a state_id
             matching this instance's id
         """
+        from models.__init__ import storage
+
+        # Create empty dictionary
+        c_dict = {}
+
+        # Fill with all cities whose state_id match this instance's id
+        for key, value in storage.all(City).items():
+            if value.to_dict()['state_id'] == self.id:
+                c_dict[key] = value
