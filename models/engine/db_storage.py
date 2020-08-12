@@ -46,6 +46,10 @@ class DBStorage():
 
             objects = self.__session.query(State).all()
             objects = objects + self.__session.query(City).all()
+            objects = objects + self.__session.query(Place).all()
+            objects = objects + self.__session.query(User).all()
+            objects = objects + self.__session.query(Amenity).all()
+            objects = objects + self.__session.query(Review).all()
         else:
             objects = self.__sesion.query(cls).all()
 
