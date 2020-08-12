@@ -28,7 +28,7 @@ class BaseModel:
                     self.key = type(self)
                 elif key == 'created_at' or key == 'updated_at':
                     """ Converts datetime string to datetime format """
-                    self.key = dt.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                    self.key = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
                 else:
                     self.key = value
 
