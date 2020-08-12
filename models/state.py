@@ -10,7 +10,7 @@ class State(BaseModel, Base):
     __tablename__ = "states"
     name = Column(String(128), nullable=False)
     cities = relationship("Child", cascade="delete, delete-orphan",
-                           backref="state")
+                          backref="state")
 
     @property
     def cities(self):
