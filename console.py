@@ -30,7 +30,7 @@ class HBNBCommand(cmd.Cmd):
                              'latitude', 'longitude', 'description',
                              'amenity_ids'],
                    'BaseModel': ['id', 'updated_at', 'created_at'],
-                   'User': ['email', 'passowrd', 'first_name', 'last_name'],
+                   'User': ['email', 'password', 'first_name', 'last_name'],
                    'State': ['name'],
                    'City': ['name', 'state_id'],
                    'Amenity': ['name'],

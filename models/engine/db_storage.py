@@ -38,17 +38,15 @@ class DBStorage():
         # Get a list of all objects, or a list of all objects of one class
         if cls is None:
             from models.user import User
-            from models.place import Place
             from models.state import State
             from models.city import City
             from models.amenity import Amenity
             from models.review import Review
-
+            from models.place import Place
             objects = self.__session.query(State).all()
             objects = objects + self.__session.query(City).all()
             objects = objects + self.__session.query(Place).all()
             objects = objects + self.__session.query(User).all()
-            objects = objects + self.__session.query(Amenity).all()
             objects = objects + self.__session.query(Review).all()
         else:
             objects = self.__sesion.query(cls).all()
