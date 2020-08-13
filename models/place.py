@@ -5,6 +5,7 @@ from sqlalchemy import Column, String, ForeignKey, Integer, Float, Table
 from sqlalchemy.orm import relationship
 from os import getenv
 
+"""
 place_amenity = Table("place_amenity", Base.metadata,
                       Column("place_id", String(60),
                              ForeignKey("places.id"),
@@ -13,7 +14,7 @@ place_amenity = Table("place_amenity", Base.metadata,
                              ForeignKey("amenities.id"),
                              nullable=False, primary_key=True)
                       )
-
+"""
 
 class Place(BaseModel, Base):
     """ A place to stay """
@@ -31,17 +32,14 @@ class Place(BaseModel, Base):
     longitude = Column(Float, nullable=False, default=0)
     amenity_ids = []
 
-    if getenv("HBNB_TYPE_STORAGE") is "db":
-        amenities = relationship("Amenity", viewonly=False,
-                                 secondary="place_amenity")
-    else:
-        @property
-        def amenities(self):
-            """ Getter for amenities """
-            return self.amenity_ids
+    @property
+    def amenities(self):
+        """ Getter for amenities """
+        return self.amenity_ids
 
-        @amenities.setter
-        def amenities(self, obj):
-            """ Setter for amenities """
-            if isinstance(obj, Amenity):
-                self.amenity_ids.append(obj.id)
+    @amenities.setter
+    def amenities(self, obj):
+        """ Setter for amenities """
+        from models.amenity import Amenity
+        if isinstance(obj, Amenity):
+            self.amenity_ids.append(obj.id)
