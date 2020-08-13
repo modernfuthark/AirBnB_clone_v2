@@ -9,6 +9,7 @@ class State(BaseModel, Base):
     """ State class """
     __tablename__ = "states"
     name = Column(String(128), nullable=False)
+    # Establishes a relationship between Cities and States
     cities = relationship("City", cascade="all, delete", backref="state")
 
     @property
