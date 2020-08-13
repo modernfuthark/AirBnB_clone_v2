@@ -9,8 +9,7 @@ class State(BaseModel, Base):
     """ State class """
     __tablename__ = "states"
     name = Column(String(128), nullable=False)
-    cities = relationship("City", cascade="delete, delete-orphan",
-                          backref="state")
+    cities = relationship("City", cascade="all, delete", backref="state")
 
     @property
     def cities(self):
@@ -18,7 +17,7 @@ class State(BaseModel, Base):
             matching this instance's id
         """
         from models.__init__ import storage
-
+        from models.city import City
         # Create empty dictionary
         c_dict = {}
 
