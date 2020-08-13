@@ -33,7 +33,7 @@ class Place(BaseModel, Base):
 
     if getenv("HBNB_TYPE_STORAGE") is "db":
         amenities = relationship("Amenity", viewonly=False,
-                                 secondary="place_amenities")
+                                 secondary="place_amenity")
     else:
         @property
         def amenities(self):
