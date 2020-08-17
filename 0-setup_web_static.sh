@@ -30,18 +30,11 @@ then
     sudo mkdir /data/web_static/releases/test/
 fi
 
-htmltext="<html>
-  <head>
-  </head>
-  <body>
-    Holberton School
-  </body>
-</html>"
-
-sudo chown -R ubuntu:ubuntu /data/
-sudo echo "$htmltext" > /data/web_static/releases/test/index.html
+sudo bash -c 'echo "<html>Holberton School</html>" > /data/web_static/releases/test/index.html'
 
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
+
+sudo chown -R ubuntu:ubuntu /data/
 
 insertline="location /hbnb_static {\n\t\talias /data/web_static/current;\n\t}"
 sudo sed -i "s@# pass the PHP@$insertline\n\n\t# pass the PHP@" /etc/nginx/sites-available/default
