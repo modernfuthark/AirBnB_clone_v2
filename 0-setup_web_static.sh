@@ -3,6 +3,7 @@
 
 sudo apt-get -y update
 sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
 
 if [ ! -d "/data/" ]
 then
@@ -37,7 +38,6 @@ htmltext="<html>
   </body>
 </html>"
 
-sudo touch /data/web_static/releases/test/index.html
 sudo bash -c 'echo "$htmltext" > /data/web_static/releases/test/index.html'
 
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
