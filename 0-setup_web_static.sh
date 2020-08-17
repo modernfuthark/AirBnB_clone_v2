@@ -39,7 +39,7 @@ htmltext="<html>
 </html>"
 
 sudo chown -R ubuntu:ubuntu /data/
-echo "$htmltext" > /data/web_static/releases/test/index.html
+sudo echo "$htmltext" > /data/web_static/releases/test/index.html
 
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 
