@@ -12,10 +12,14 @@ def do_pack():
     time_str = ""
     for index in range(0, 6):
         time_str = time_str + str(time[index])
-    filename = "web_static_" + time_str + ".tgz"
+    filename = "versions/web_static_" + time_str + ".tgz"
+
+    # Create destination directory
+    if not os.path.exists("versions"):
+        local("mkdir versions")
 
     # Compress directory
-    local("tar -czvf " + filename + " web_static")
+    local("tar -cvzf " + filename + " web_static")
 
     # Test if successful
     if os.path.exists(filename):
