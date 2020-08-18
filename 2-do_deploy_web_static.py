@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" 1-pack_web_static """
+""" 2-do_deploy_web_static """
 import os
 from datetime import datetime
 from fabric.api import *
