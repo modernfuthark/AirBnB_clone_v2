@@ -1,41 +1,52 @@
 #!/usr/bin/env bash
-# Sets up directories, ownerships, and links for web static deployment
+# Creates all the junk needed for Nginx on a server
+# shellcheck disable=SC2016
 
+# Install nginx
 sudo apt-get -y update
 sudo apt-get -y install nginx
 sudo ufw allow 'Nginx HTTP'
 
-if [ ! -d "/data/" ]
-then
-    sudo mkdir /data
-fi
+# Create directories
+sudo mkdir -p /data/web_static/releases/test
+sudo mkdir -p /data/web_static/shared
 
-if [ ! -d "/data/web_static/" ]
-then
-    sudo mkdir /data/web_static
-fi
+# Makes a file named index.html, adds filler into it
+sudo echo "testing testing 123 " | sudo tee /data/web_static/releases/test/index.html
 
-if [ ! -d "/data/web_static/releases" ]
-then
-    sudo mkdir /data/web_static/releases
-fi
+# Create symbolic link between the test folder and file current
+sudo ln -sf /data/web_static/releases/test /data/web_static/current
 
-if [ ! -d "/data/web_static/shared" ]
-then
-    sudo mkdir /data/web_static/shared
-fi
-
-if [ ! -d "/data/web_static/releases/test/" ]
-then
-    sudo mkdir /data/web_static/releases/test/
-fi
-
-sudo bash -c 'echo "<html>Holberton School</html>" > /data/web_static/releases/test/index.html'
-
-sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
-
+# Change ownership of folder /data/
 sudo chown -R ubuntu:ubuntu /data/
 
-insertline="location /hbnb_static {\n\t\talias /data/web_static/current;\n\t}"
-sudo sed -i "s@# pass the PHP@$insertline\n\n\t# pass the PHP@" /etc/nginx/sites-available/default
+# i hate typing so use a shell variable for a string
+str='server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	location /hbnb_static {
+	alias /data/web_static/current/;
+	index index.html;
+	}
+	location /tester {
+        alias /var/www/html/;
+        index tester.html;
+        }
+        rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
+        add_header  X-Served-By $hostname;
+	error_page 404 /not_found.html;
+	location = /not_found.html {
+		root /usr/share/nginx/html;
+		internal;
+	}
+	root /var/www/html;
+	index index.html index.htm index.nginx-debian.html;
+	server_name _;
+	location / {
+		try_files $uri $uri/ =404;
+	}
+}'
+
+# Use string to edit default for nginx, then restart nginx
+sudo echo "$str" | sudo tee /etc/nginx/sites-available/default
 sudo service nginx restart
