@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ 1-pack_web_static """
-from os
+import os
 from datetime import datetime
 from fabric.api import local
 
