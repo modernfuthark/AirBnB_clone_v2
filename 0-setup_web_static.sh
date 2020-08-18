@@ -6,7 +6,7 @@
 sudo apt-get -y update
 sudo apt-get -y install nginx
 sudo ufw allow 'Nginx HTTP'
-sudo service restart nginx
+sudo service nginx restart
 
 # Create directories
 sudo mkdir -p data/web_static/{releases/test,shared}
