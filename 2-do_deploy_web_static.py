@@ -5,7 +5,8 @@ from datetime import datetime
 from fabric.api import *
 
 
-env.hosts = ['35.227.17.143', '35.190.159.240']
+env.hosts = ['35.227.17.143']
+# , '35.190.159.240']
 
 
 def do_pack():
@@ -34,7 +35,7 @@ def do_deploy(archive_path):
 
             run("sudo mkdir -p /data/web_static/releases/{}/".
                 format(file_name[0]))
-            run("sudo tar -xzf /tmp/{} -C /data/web_static/releases/{}"
+            run("sudo tar -xzf /tmp/{} -C /data/web_static/releases/{}/"
                 .format(fsplit[1], file_name[0]))
             run("sudo rm /tmp/{}".format(fsplit[1]))
             run("sudo mv /data/web_static/releases/{}/web_static/*\
