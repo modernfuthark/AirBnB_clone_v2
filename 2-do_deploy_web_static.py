@@ -2,10 +2,10 @@
 """ 1-pack_web_static """
 import os
 from datetime import datetime
-import fabric.api
+from fabric.api import *
 
 
-# env.hosts = ['', '']
+env.hosts = ['35.227.17.143', '35.190.159.240']
 
 
 def do_pack():
@@ -24,7 +24,7 @@ def do_deploy(archive_path):
     """ Deploys package """
     if os.path.exists(archive_path):
         try:
-            put(archive_path, "/tmp/"
+            put(archive_path, "/tmp/")
 
             fsplit = archive_path.split("/")
             # 'foo/bar.egg' -> "foo", "bar.egg"
