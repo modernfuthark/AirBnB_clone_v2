@@ -40,7 +40,7 @@ def number(n):
 def number_template(n):
     """ Returns an html template with an updated H1 tag """
     from flask import render_template
-    return render_template('5-number.html', num=n)
+    return render_template("5-number.html", num=n)
 
 if __name__ == "__main__":
     flap.run(host="0.0.0.0", port="5000")
