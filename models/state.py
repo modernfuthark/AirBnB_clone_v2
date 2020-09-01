@@ -20,9 +20,11 @@ class State(BaseModel, Base):
         from models.__init__ import storage
         from models.city import City
         # Create empty dictionary
-        c_dict = {}
+        c_dict = []
 
         # Fill with all cities whose state_id match this instance's id
         for key, value in storage.all(City).items():
             if value.to_dict()['state_id'] == self.id:
-                c_dict[key] = value
+                c_dict.append(value)
+
+        return c_dict
