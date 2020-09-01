@@ -49,7 +49,7 @@ class DBStorage():
             objects = objects + self.__session.query(User).all()
             objects = objects + self.__session.query(Review).all()
         else:
-            objects = self.__sesion.query(cls).all()
+            objects = self.__session.query(cls).all()
 
         # Build dictionary from list. Key format is <Class name>.<object id>
         for obj in objects:
