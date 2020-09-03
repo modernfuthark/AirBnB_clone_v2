@@ -14,6 +14,7 @@ def cities_by_states():
     states = storage.all(State)
     return render_template("8-cities_by_states.html", states=states)
 
+
 @flap.teardown_appcontext
 def teardown(arg=None):
     """ teardown """
