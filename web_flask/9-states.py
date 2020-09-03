@@ -4,6 +4,7 @@
 from flask import Flask, render_template
 from models import storage
 from models.state import State
+from models.city import City
 
 flap = Flask(__name__)
 
@@ -13,7 +14,15 @@ flap = Flask(__name__)
 def states(id=None):
     """ returns rendered html listing states """
     states = storage.all(State)
-    return render_template("9-states.html", states=states, id=id)
+    specific = False
+    s_state = None
+
+    for i in states.values():
+        if id == i.id:
+            specific = True
+            s_state = i
+    return render_template("9-states.html", states=states,
+                           spec=specific, sstate=s_state)
 
 
 @flap.teardown_appcontext
