@@ -15,6 +15,7 @@ def states(id=None):
     states = storage.all(State)
     return render_template("9-states.html", states=states, id=id)
 
+
 @flap.teardown_appcontext
 def teardown(arg=None):
     """ teardown """
