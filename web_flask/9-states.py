@@ -9,7 +9,7 @@ flap = Flask(__name__)
 
 
 @flap.route("/states")
-@flap.route("/states/<int:id>")
+@flap.route("/states/<id>")
 def states(id=None):
     """ returns rendered html listing states """
     states = storage.all(State)
