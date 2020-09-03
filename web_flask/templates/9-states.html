@@ -11,8 +11,8 @@
 			<LI>{{ state.id }}: <B>{{ state.name }}</B></LI>
 			{% endfor %}
 		</UL>
-		{% elif states.get('DeclaritiveMeta.' + id) %}
-		<H1>State: {{ states['DeclaritiveMeta.' + id].name }}</H1>
+		{% elif states.get('DeclarativeMeta.' + id) %}
+		<H1>State: {{ states['DeclarativeMeta.' + id].name }}</H1>
 		<H3>Cities:</H3>
 		<UL>
 		{% for city in states['DeclarativeMeta.' + id].cities | sort(attribute='name') %}
